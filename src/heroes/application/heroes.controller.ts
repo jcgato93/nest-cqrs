@@ -1,9 +1,10 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { KillDragonCommand } from './commands/impl/kill-dragon.command';
-import { KillDragonDto } from './interfaces/kill-dragon-dto.interface';
-import { Hero } from './models/hero.model';
 import { GetHeroesQuery } from './queries/impl';
+import { KillDragonDto } from '../domain/interfaces/kill-dragon-dto.interface';
+import { Hero } from '../domain/models/hero.model';
+
 
 @Controller('hero')
 export class HeroesGameController {

@@ -1,9 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { Hero } from '../models/hero.model';
+import { IHeroRepository } from '../../domain/hero.repository.interface';
+import { Hero } from '../../domain/models/hero.model';
 import { userHero } from './fixtures/user';
 
 @Injectable()
-export class HeroRepository {
+export class HeroRepository implements IHeroRepository{
   async findOneById(id: number): Promise<Hero> {
     return userHero;
   }

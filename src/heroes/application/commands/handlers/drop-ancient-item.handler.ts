@@ -1,13 +1,16 @@
+import { Inject } from '@nestjs/common';
 import { CommandHandler, EventPublisher, ICommandHandler } from '@nestjs/cqrs';
 import * as clc from 'cli-color';
-import { HeroRepository } from '../../repository/hero.repository';
+import { HeroRepository } from '../../../infrastructure/repository/hero.repository';
 import { DropAncientItemCommand } from '../impl/drop-ancient-item.command';
+
+const HeroRepo = () => Inject('HeroRepo');
 
 @CommandHandler(DropAncientItemCommand)
 export class DropAncientItemHandler
   implements ICommandHandler<DropAncientItemCommand> {
   constructor(
-    private readonly repository: HeroRepository,
+    @HeroRepo() private readonly repository: HeroRepository,
     private readonly publisher: EventPublisher,
   ) {}
 
